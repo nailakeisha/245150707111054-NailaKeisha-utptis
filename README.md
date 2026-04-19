@@ -1,4 +1,4 @@
-# 🛒 UTP TIS — Ecommerce Backend API
+# UTP TIS — Ecommerce Backend API
 ### Laravel + JSON Storage (No Database)
 
 **Nama:** Naila Keisha  
