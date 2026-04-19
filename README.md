@@ -90,7 +90,7 @@ Server berjalan di: `http://127.0.0.1:8000`
 
 Akses Swagger UI di:
 ```
-http://127.0.0.1:8000/api/documentation
+http://127.0.0.1:8000/api/documentation#/
 ```
 
 ---
