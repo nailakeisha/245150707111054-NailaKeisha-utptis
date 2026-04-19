@@ -1,59 +1,212 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🛒 UTP TIS — Ecommerce Backend API
+### Laravel + JSON Storage (No Database)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+**Nama:** Naila Keisha  
+**NIM:** 245150707111054  
+**Mata Kuliah:** Teknologi Informasi Sistem  
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 📌 Deskripsi Project
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Project ini merupakan implementasi backend API sederhana berbasis **ecommerce** menggunakan framework **Laravel** dengan penyimpanan data menggunakan **mock data JSON** (tanpa database). API ini mendukung operasi CRUD lengkap untuk manajemen barang/item.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## 🔧 Teknologi yang Digunakan
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+- **PHP** 8.2
+- **Laravel** 11.x
+- **JSON File** sebagai penyimpanan data (non-database)
+- **Swagger UI** (l5-swagger) untuk dokumentasi API interaktif
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## 📁 Struktur Project
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```
+app/
+├── Http/
+│   └── Controllers/
+│       ├── ItemController.php   ← Controller utama CRUD
+│       └── SwaggerInfo.php      ← Konfigurasi Swagger
+├── Services/
+│   └── ItemService.php          ← Logic baca/tulis JSON
+routes/
+└── api.php                      ← Definisi semua route API
+storage/
+└── app/
+    └── data/
+        └── items.json           ← "Database" JSON
+```
 
-### Premium Partners
+---
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+## ⚙️ Cara Instalasi & Menjalankan
 
-## Contributing
+### 1. Clone Repository
+```bash
+git clone https://github.com/username/245150707111054-NailaKeisha-utptis.git
+cd 245150707111054-NailaKeisha-utptis
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 2. Install Dependencies
+```bash
+composer install
+```
 
-## Code of Conduct
+### 3. Setup Environment
+```bash
+cp .env.example .env
+php artisan key:generate
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 4. Buat File JSON Storage
+```bash
+mkdir -p storage/app/data
+echo [] > storage/app/data/items.json
+```
 
-## Security Vulnerabilities
+### 5. Aktifkan API Routes
+```bash
+php artisan install:api
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 6. Generate Swagger Docs
+```bash
+php artisan l5-swagger:generate
+```
 
-## License
+### 7. Jalankan Server
+```bash
+php artisan serve
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Server berjalan di: `http://127.0.0.1:8000`
+
+---
+
+## 📖 Dokumentasi API (Swagger)
+
+Akses Swagger UI di:
+```
+http://127.0.0.1:8000/api/documentation
+```
+
+---
+
+## 📋 Daftar Endpoint
+
+| Method | Endpoint | Deskripsi |
+|--------|----------|-----------|
+| GET | `/api/items` | Tampilkan semua barang |
+| POST | `/api/items` | Tambah barang baru |
+| GET | `/api/items/{id}` | Tampilkan barang by ID |
+| PUT | `/api/items/{id}` | Update seluruh data barang |
+| PATCH | `/api/items/{id}` | Update sebagian data barang |
+| DELETE | `/api/items/{id}` | Hapus barang |
+
+---
+
+## 📝 Contoh Request & Response
+
+### POST `/api/items` — Tambah Barang
+**Request:**
+```json
+{
+  "nama_barang": "Laptop Asus",
+  "harga": 8500000,
+  "stok": 10,
+  "deskripsi": "Laptop gaming terjangkau"
+}
+```
+**Response 201:**
+```json
+{
+  "success": true,
+  "message": "Barang berhasil ditambahkan",
+  "data": {
+    "id": 1,
+    "nama_barang": "Laptop Asus",
+    "harga": 8500000,
+    "stok": 10,
+    "deskripsi": "Laptop gaming terjangkau",
+    "created_at": "2026-04-19 10:00:00",
+    "updated_at": "2026-04-19 10:00:00"
+  }
+}
+```
+
+### GET `/api/items` — Semua Barang
+**Response 200:**
+```json
+{
+  "success": true,
+  "message": "Berhasil mengambil semua data barang",
+  "data": [ ... ],
+  "total": 1
+}
+```
+
+### GET `/api/items/99` — ID Tidak Ada
+**Response 404:**
+```json
+{
+  "success": false,
+  "message": "Item dengan ID 99 tidak Ditemukan"
+}
+```
+
+### PUT `/api/items/{id}` — Update Semua Field
+**Request (semua field wajib):**
+```json
+{
+  "nama_barang": "Laptop Asus Pro",
+  "harga": 9000000,
+  "stok": 5,
+  "deskripsi": "Versi terbaru RAM 16GB"
+}
+```
+
+### PATCH `/api/items/{id}` — Update Sebagian
+**Request (minimal 1 field):**
+```json
+{
+  "harga": 7500000
+}
+```
+
+### DELETE `/api/items/{id}`
+**Response 200:**
+```json
+{
+  "success": true,
+  "message": "Barang dengan ID 1 berhasil dihapus"
+}
+```
+
+---
+
+## ✅ Validasi & Error Handling
+
+| Kode | Keterangan |
+|------|------------|
+| 200 | Berhasil |
+| 201 | Data berhasil dibuat |
+| 404 | Data tidak ditemukan |
+| 422 | Validasi gagal |
+
+Contoh response validasi gagal:
+```json
+{
+  "success": false,
+  "message": "Validasi gagal",
+  "errors": {
+    "nama_barang": ["Nama barang wajib diisi"],
+    "harga": ["Harga wajib diisi"]
+  }
+}
+```
+
+---
+
